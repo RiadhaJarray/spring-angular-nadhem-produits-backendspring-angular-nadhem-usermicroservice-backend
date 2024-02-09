@@ -29,6 +29,7 @@ public class User {
 	@Column(unique=true)
 	private String username;
 	private String password;
+	private String email;
 	private Boolean enabled;
 	
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)

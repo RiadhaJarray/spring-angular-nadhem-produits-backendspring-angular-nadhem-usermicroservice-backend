@@ -52,8 +52,11 @@ public class SecurityConfig {
 					 	//si j'ai plus qu'un site a authorisé
 					 	//cors.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:5200"));
 					 	cors.setAllowedMethods(Collections.singletonList("*"));
+					 	cors.setAllowCredentials(true);
 					 	cors.setAllowedHeaders(Collections.singletonList("*"));
 					 	cors.setExposedHeaders(Collections.singletonList("Authorization"));
+					 	cors.setMaxAge(3600L);
+
 					 	 return cors;
 				 	 }
 			 	 }
@@ -61,7 +64,7 @@ public class SecurityConfig {
 		 	
 		 	//les request à autorisé
 		 	.authorizeHttpRequests(
-		 			requests-> requests.requestMatchers("/login").permitAll() //autorise tout le monde à acceder a cet url
+		 			requests-> requests.requestMatchers("/login", "/register/**", "/verifyEmail/**").permitAll() //autorise tout le monde à acceder a cet url
 		 								.requestMatchers("/all").hasAuthority("ADMIN")	
 		 								.anyRequest().authenticated() ) //pour tout les autre : doit etre authentifié
 		 	

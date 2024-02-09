@@ -42,7 +42,9 @@ public class MyUserDetailsService  implements UserDetailsService{
 		//on retourne ici un objet user de type user de spring.userdetail 
 		//nous avons donné un qualificatif complet car nous avons deja importer un User (user de entities): on ne peut pas importer un autre User
 		//il demande : username , password , authorityList
-		return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),auths);
+		return new org.springframework.security.core.userdetails.User(
+				user.getUsername(),user.getPassword(),user.getEnabled(),true,true,true,auths
+				);
 	}
 
 }
